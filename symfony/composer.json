@@ -1,0 +1,15 @@
+{
+  "require": {
+
+  	"php": ">=5.3.3",
+    "twig/extensions": "~1.0",
+    "incenteev/composer-parameter-handler": "~2.0",
+  	"doctrine/doctrine-fixtures-bundle": "~2.2",
+  	"doctrine/doctrine-fixtures-bundle": "dev-master",
+  	"doctrine/data-fixtures": "dev-master"
+  },
+
+    "autoload": {
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+    }
+}
