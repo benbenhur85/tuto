@@ -14,6 +14,8 @@ use OC\PlatformBundle\Entity\Category;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use OC\PlatformBundle\Form\AdvertType;
 use OC\PlatformBundle\Form\AdvertEditType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdvertController extends Controller
 {
@@ -75,8 +77,21 @@ class AdvertController extends Controller
     ));
   }
 
+  /**
+   * @Security("has_role('ROLE_AUTEUR')")
+   */
   public function addAction(Request $request)
   {
+
+
+     // On vérifie que l'utilisateur dispose bien du rôle ROLE_AUTEUR
+    if (!$this->get('security.context')->isGranted('ROLE_AUTEUR')) {
+      // Sinon on déclenche une exception « Accès interdit »
+      throw new AccessDeniedException('Accès limité aux auteurs.');
+    }
+
+    // Ici l'utilisateur a les droits suffisant,
+    // on peut ajouter une annonce*/
     $advert = new Advert();
     $form = $this->get('form.factory')->create(new AdvertType(), $advert);
 

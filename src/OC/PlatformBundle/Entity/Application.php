@@ -54,6 +54,11 @@ class Application
      */
     private $date;
 
+    /**
+     * @ORM\Column(name="ip", type="string", length=255)
+     */
+    private $ip;
+
     public function __construct()
     {
         $this->date = new \Datetime();
@@ -169,4 +174,14 @@ class Application
   {
     $this->getAdvert()->decreaseApplication();
   }
+
+   public function getIp()
+    {
+        return $this->ip;
+    }
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+    }
+
 }
